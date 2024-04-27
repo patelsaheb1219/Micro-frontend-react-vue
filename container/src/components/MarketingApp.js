@@ -6,9 +6,9 @@ const MarketingApp = () => {
     mount(ref.current);
   });
 
-  const ref = useRef(null);
+  const marketingRef = useRef(null);
 
-  return <div ref={ref}></div>;
+  return <div ref={marketingRef}></div>;
 };
 
 
