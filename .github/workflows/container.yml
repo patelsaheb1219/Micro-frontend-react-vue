@@ -6,6 +6,13 @@ on:
       - main
     paths:
       - 'container/**'
+  
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'container/**'
+    types: [closed]
 
 defaults:
   run:
