@@ -7,11 +7,22 @@ import App from "./App";
 const mount = (el, props) => {
   const { onNavigate } = props;
   const history = createMemoryHistory();
- if (onNavigate) {
-   history.listen(onNavigate);
- }
+
+  if (onNavigate) {
+    history.listen(onNavigate);
+  }
 
   ReactDOM.render(<App history={history} />, el);
+
+  return {
+    onParentNavigate(location) {
+      const { pathname: nextPathName } = location;
+      const { pathname } = history.location;
+      if (pathname !== nextPathName) {
+        history.push(nextPathName);
+      }
+    },
+  };
 };
 
 if (process.env.NODE_ENV === "development") {
