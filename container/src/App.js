@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import {
   StylesProvider,
   createGenerateClassName,
@@ -7,6 +7,7 @@ import {
 
 import MarketingApp from "./components/MarketingApp";
 import Header from "./components/Header";
+import AuthApp from "./components/AuthApp";
 
 const generateClassName = createGenerateClassName({
   productionPrefix: "con",
@@ -14,12 +15,15 @@ const generateClassName = createGenerateClassName({
 
 const App = () => {
   return (
-    <StylesProvider generateClassName={generateClassName}>
-      <BrowserRouter>
+    <BrowserRouter>
+      <StylesProvider generateClassName={generateClassName}>
         <Header />
-        <MarketingApp />
-      </BrowserRouter>
-    </StylesProvider>
+        <Switch>
+          <Route path={"/auth"} component={AuthApp} />
+          <Route path={"/"} component={MarketingApp} />
+        </Switch>
+      </StylesProvider>
+    </BrowserRouter>
   );
 };
 
